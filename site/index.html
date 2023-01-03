@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const activities = [];
+
+      function master() {
+        try {
+          select();
+        } catch {
+          document.getElementById("act").innerText =
+            "All things already selected";
+        }
+      }
+
+      function clear() {
+        localStorage.clear();
+      }
+
+      function select() {
+        //Select Random
+        const rand = activities[Math.floor(Math.random() * activities.length)];
+        const alreadySelected = JSON.parse(localStorage.getItem("l")) || [];
+
+        let found = false;
+        for (let i = 0; i < alreadySelected.length; i++) {
+          const a = alreadySelected[i];
+          if (a === rand) {
+            //Need new thing
+            found = true;
+            select();
+            break;
+          }
+        }
+
+        if (found === true) return;
+
+        let newa = alreadySelected;
+        newa.push(rand);
+        localStorage.setItem("l", JSON.stringify(newa));
+        document.getElementById("act").innerText = rand;
+      }
+
+      function add() {
+        //Get value
+        const element = document.getElementById("i");
+        activities.push(element.value);
+        element.value = null;
+
+        document.getElementById("acts").innerText = JSON.stringify(activities);
+      }
+    </script>
+  </head>
+  <body>
+    <input placeholder="Enter Activity Name" id="i" />
+    <button onclick="add()">Add</button>
+    <p id="acts"></p>
+
+    <button onclick="master()">Select Random Activity</button>
+    <button onclick="clear()">Clear</button>
+    <p id="act"></p>
+  </body>
+</html>

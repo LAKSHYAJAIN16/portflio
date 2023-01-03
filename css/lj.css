@@ -1,0 +1,28 @@
+.skill-img {
+    width: 80px;
+    height: 80px;
+}
+
+.lj-big {
+    font-size: 12vw !important;
+}
+
+.lj-smol {
+    font-size: 2vw !important;
+    margin-top: 0px;
+}
+
+.lj-project-header {
+    font-size: 50px !important;
+}
+
+.lj-project-types{
+    font-size: 10px !important;
+}
+
+.lj-git {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 100;
+}
